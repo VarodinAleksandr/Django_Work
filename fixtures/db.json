@@ -1,0 +1,58 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "usm2fjt76dnnq3vqj6v9y5kjps38nl2k",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCZAlKX7j0DmWEGqRpISrsy3l2bdKHb_977LxVxXUpcu8xxYnVWRh1-N8L0kLoBvmO9NZ1aXeaJ9KbonXZ9bSzPy-7-HRTs5VsjM3kgxxxsJgM-QOIMYTBsBUckAeddZi_A7PLJHQOKHcbgDZGkrN4fErM5Jw:1omx2H:W1mtO33j1hjUk6tJ2xdJRO7--TJjOy1BdIxyDL9PQQ0",
+    "expire_date": "2022-11-07T12:58:33.711Z"
+  }
+}
+]

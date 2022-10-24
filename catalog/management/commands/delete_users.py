@@ -10,9 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         users_ids = kwargs['user_id']
-        superusers = User.objects.filter(is_superuser=True)
-        for i in superusers:
-            if i.id in users_ids:
-                raise Exception('This is SUPERUSER, cannot be deleted')
+        is_superusers = User.objects.filter(is_superuser=True, id__in=users_ids).exists()
+        if is_superusers:
+            raise Exception('This is SUPERUSER, cannot be deleted')
         users_to_delete = User.objects.filter(id__in=users_ids)
         users_to_delete.delete()

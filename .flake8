@@ -13,4 +13,9 @@ exclude =
     migrations
 
 
+ignore =
+    # A003 class attribute "help" is shadowing a python builti
+    A003,
+
+
 max-line-length = 200

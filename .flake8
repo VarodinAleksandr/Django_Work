@@ -8,6 +8,8 @@ exclude =
     venv,
     .env
     ./env
+    .venv
+    ./venv
     manage.py
     pycache
     migrations

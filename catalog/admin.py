@@ -1,3 +1,7 @@
-from django.contrib import admin  # noqa : F401
+from django.contrib import admin
+from .models import Manager, Car, Client
 
-# Register your models here.
+
+admin.site.register(Manager)
+admin.site.register(Car)
+admin.site.register(Client)

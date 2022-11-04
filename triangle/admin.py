@@ -1,3 +1,10 @@
-from django.contrib import admin  # noqa : F401
+from django.contrib import admin
 
-# Register your models here.
+from .models import Logg
+
+
+@admin.register(Logg)
+class LoggAdmin(admin.ModelAdmin):
+    list_display = ['timestamp', 'method', 'path']
+    search_fields = ['method', 'path', 'data']
+    list_filter = ['timestamp', 'method']

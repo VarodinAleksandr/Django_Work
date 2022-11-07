@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Book id: {{book.id}}</p>
+<p>Book name: {{book.name}}</p>
+<p>Book price: {{book.price}}</p>
+<p>Book rating: {{book.rating}}</p>
+<p>Book pubdate: {{book.pubdate}}</p>
+<p>Book publisher: {{book.publisher.name}}</p>
+<table>
+  <tr>
+    <th>Author name</th>
+    <th>Author age</th>
+  </tr>
+{% for a in authors %}
+  <tr>
+    <td>{{a.name}}</td>
+    <td>{{a.age}}</td>
+  </tr>
+{% endfor %}
+<table>
+
+</body>
+</html>

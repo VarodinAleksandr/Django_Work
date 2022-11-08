@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Author id</th>
+    <th>Author name</th>
+      <th>Author age</th>
+      <th>Number of books</th>
+       <th>Average books rating</th>
+
+  </tr>
+{% for p in authors %}
+    <tr>
+    <th><a href="{% url 'library:author_detail' p.id %}">{{p.id}}</a>></th>
+    <th><a href="{% url 'library:author_detail' p.id %}">{{p.name}}</a></th>
+    <th>{{p.age}}</th>
+    <th>{{p.number_of_books}}</th>
+    <th>{{p.avg_rating}}</th>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

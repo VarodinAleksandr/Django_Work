@@ -1,12 +1,12 @@
 import random
 from datetime import datetime
 
-from ...models import Author, Book, Publisher, Store
-
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 
 from faker import Faker
+
+from ...models import Author, Book, Publisher, Store
 
 
 class Command(BaseCommand):
@@ -44,13 +44,13 @@ class Command(BaseCommand):
             for i in range(20):
                 counter = counter + 1
                 book = Book.objects.create(
-                        name=f"Book{counter}",
-                        pages=random.randint(300, 1000),
-                        price=random.randint(50, 300),
-                        rating=random.uniform(0.1, 10.0),
-                        publisher=publisher,
-                        pubdate=datetime.now().date()
-                    )
+                    name=f"Book{counter}",
+                    pages=random.randint(300, 1000),
+                    price=random.randint(50, 300),
+                    rating=random.uniform(0.1, 10.0),
+                    publisher=publisher,
+                    pubdate=datetime.now().date()
+                )
                 book.authors.add(*random.choices(authors_ids, k=3))
 
         books = list(Book.objects.all())

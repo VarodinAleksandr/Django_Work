@@ -5,6 +5,7 @@ from .views import (
     author_list,
     book_detail,
     book_list,
+    main_page,
     publisher_detail,
     publisher_list,
     store_detail,
@@ -14,6 +15,7 @@ from .views import (
 
 app_name = 'library'
 urlpatterns = [
+    path('', main_page, name='library_main'),
     path('publisher', publisher_list, name='publisher'),
     path('publisher/<int:pk>', publisher_detail, name='publisher_detail'),
     path('author', author_list, name='author'),

@@ -5,8 +5,25 @@
     <title>Title</title>
 </head>
 <body>
+<table>
+  <tr>
+    <th>Book id</th>
+    <th>Book name</th>
+      <th>Book authors count</th>
+      <th>Book publisher</th>
+      <th>Book rating</th>
+
+  </tr>
 {% for p in books %}
-    <a href="{% url 'library:book_detail' p.id %}">{{p.id}} {{p.name}}</a><br>
+    <tr>
+    <th><a href="{% url 'library:book_detail' p.id %}">{{p.id}}</a></th>
+    <th><a href="{% url 'library:book_detail' p.id %}">{{p.name}}</a></th>
+      <th>{{p.number_of_authors}}</th>
+        <th>{{p.publisher.name}}</th>
+        <th>{{p.rounded_rating}}</th>
+
+  </tr>
 {% endfor %}
+    </table>
 </body>
 </html>

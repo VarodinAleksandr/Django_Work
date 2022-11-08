@@ -5,8 +5,20 @@
     <title>Title</title>
 </head>
 <body>
+<table>
+  <tr>
+    <th>Store id</th>
+    <th>Store name</th>
+      <th>Number of books in store</th>
+
+  </tr>
 {% for p in stores %}
-    <a href="{% url 'library:store_detail' p.id %}">{{p.id}} {{p.name}}</a>
+    <tr>
+    <th><a href="{% url 'library:store_detail' p.id %}">{{p.id}}</a></th>
+    <th><a href="{% url 'library:store_detail' p.id %}">{{p.name}}</a></th>
+    <th>{{p.number_of_books}}</th>
+    </tr>
 {% endfor %}
+</table>
 </body>
 </html>

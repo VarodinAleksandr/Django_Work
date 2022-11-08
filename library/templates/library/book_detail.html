@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+<a href="{% url 'library:book' %}">Back to Books list</a><br>
+
 <p>Book id: {{book.id}}</p>
 <p>Book name: {{book.name}}</p>
 <p>Book price: {{book.price}}</p>
@@ -22,7 +24,7 @@
     <td>{{a.age}}</td>
   </tr>
 {% endfor %}
-<table>
+</table>
 
 </body>
 </html>

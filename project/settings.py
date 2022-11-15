@@ -49,7 +49,8 @@ INSTALLED_APPS = [
 
     'catalog',
     'triangle',
-    'library'
+    'library',
+    'beautifulsoup',
 ]
 
 if DEBUG:

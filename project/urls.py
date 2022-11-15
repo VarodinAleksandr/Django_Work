@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('triangle/', include('triangle.urls')),
     path('library/', include('library.urls')),
+    path('sendemail/', include('sendemail.urls')),
 ]
 
 if settings.DEBUG:

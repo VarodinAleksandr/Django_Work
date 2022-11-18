@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from celery.schedules import crontab
+
 import environ
 
 env = environ.Env()
@@ -153,3 +155,11 @@ EMAIL_PORT = '1025'
 
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_BEAT_SCHEDULE = {
+    'add-every-second-hour': {
+        'task': 'beautifulsoup.tasks.pars_quotes',
+        'schedule': crontab(minute=0, hour='1-23/2'),
+        'args': (),
+    },
+}

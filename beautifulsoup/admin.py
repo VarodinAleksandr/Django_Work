@@ -13,5 +13,3 @@ class AuthorAdmin(admin.ModelAdmin):
 @admin.register(Citaty)
 class CitatyAdmin(admin.ModelAdmin):
     list_display = ['text', 'author']
-
-

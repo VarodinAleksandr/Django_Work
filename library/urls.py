@@ -1,15 +1,14 @@
 from django.urls import path
 
 from .views import (
+    AuthorCreateView,
+    AuthorDeleteView,
+    AuthorDetailUpdateView,
+    AuthorDetailView,
+    AuthorList,
     author_detail,
     author_list,
-    book_detail,
-    book_list,
-    main_page,
-    publisher_detail,
-    publisher_list,
-    store_detail,
-    store_list, AuthorList, AuthorDetailView, AuthorDetailUpdateView, AuthorDeleteView, AuthorCreateView
+    book_detail, book_list, main_page, publisher_detail, publisher_list, store_detail, store_list
 )
 
 

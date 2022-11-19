@@ -9,7 +9,7 @@
 
   <p>Are you sure you want to delete the author: {{ author }}?</p>
 
- <form action="{% url 'library:author_delete_v2' author.id %}" method="POST">
+ <form method="post">
     {% csrf_token %}
     <input type="submit" value="Yes, delete."/>
   </form>

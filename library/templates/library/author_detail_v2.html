@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'library:author_list_v2' %}">Back to Authors list</a><br>
+<p>Author id: {{author.id}}</p>
+<p>Author name: {{author.name}}</p>
+<p>Author age: {{author.age}}</p>
+<a href="{% url 'library:author_update_v2' author.id %}">Edit author</a><br>
+<a href="{% url 'library:author_delete_v2' author.id %}">Delete author</a><br>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <h1>Delete Author</h1>
+
+  <p>Are you sure you want to delete the author: {{ author }}?</p>
+
+ <form action="{% url 'library:author_delete_v2' author.id %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete."/>
+  </form>
+
+</body>
+</html>

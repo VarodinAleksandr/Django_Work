@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth import login
 from django.urls import include, path
 
 
@@ -23,6 +24,7 @@ urlpatterns = [
     path('triangle/', include('triangle.urls')),
     path('library/', include('library.urls')),
     path('sendemail/', include('sendemail.urls')),
+    path('login', login, name='login'),
 ]
 
 if settings.DEBUG:

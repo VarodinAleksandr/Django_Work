@@ -1,7 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg, Count
 from django.db.models.functions import Round
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
+from django.views import generic
 
+from .forms import AuthorForm
 from .models import Author, Book, Publisher, Store
 
 
@@ -73,3 +77,44 @@ def book_detail(request, pk):
             'authors': authors,
         }
         return render(request, 'library/book_detail.html', context)
+
+
+class AuthorList(generic.ListView):
+    model = Author
+    template_name = 'library/author_list_v2.html'
+    paginate_by = 5
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+    template_name = 'library/author_detail_v2.html'
+    context_object_name = 'author'
+
+
+class AuthorDetailUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Author
+    template_name = 'library/author_update.html'
+    form_class = AuthorForm
+    login_url = '/admin/login/'
+
+    def get_success_url(self):
+        return reverse_lazy('library:author_detail_v2', kwargs={'pk': self.object.pk})
+
+
+class AuthorDeleteView(LoginRequiredMixin, generic.DeleteView):
+    http_method_names = ['delete', 'post', 'get']
+    model = Author
+    success_url = reverse_lazy('library:author_list_v2')
+    template_name = 'library/delete_author_v2.html'
+    login_url = '/admin/login/'
+
+
+class AuthorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Author
+    template_name = 'library/author_create_v2.html'
+    form_class = AuthorForm
+    login_url = '/admin/login/'
+    redirect_field_name = 'redirect_to'
+
+    def get_success_url(self):
+        return reverse_lazy('library:author_detail_v2', kwargs={'pk': self.object.pk})

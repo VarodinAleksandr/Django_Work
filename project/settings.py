@@ -153,6 +153,17 @@ DEBUG = True
 EMAIL_HOST = '127.0.0.1'
 EMAIL_PORT = '1025'
 
+# cache
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+    }
+}
+
+# celery
+
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BROKER_URL = 'amqp://localhost'
 CELERY_TIMEZONE = TIME_ZONE

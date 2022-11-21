@@ -1,9 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import InvalidPage
 from django.db.models import Avg, Count
 from django.db.models.functions import Round
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views import generic
+from django.views.decorators.cache import cache_page
 
 from .forms import AuthorForm
 from .models import Author, Book, Publisher, Store
@@ -79,10 +83,39 @@ def book_detail(request, pk):
         return render(request, 'library/book_detail.html', context)
 
 
+@method_decorator(cache_page(10), 'dispatch')
 class AuthorList(generic.ListView):
     model = Author
     template_name = 'library/author_list_v2.html'
-    paginate_by = 5
+    paginate_by = 20
+
+    def get_queryset(self):
+        authors = Author.objects.prefetch_related('books').annotate(number_of_books=Count(
+            'books'), avg_rating=Round(Avg('books__rating'), precision=2), store_number=Count('books')).all()
+        return authors
+
+    def paginate_queryset(self, queryset, page_size):
+        paginator = self.get_paginator(
+            queryset,
+            page_size,
+            orphans=self.get_paginate_orphans(),
+            allow_empty_first_page=self.get_allow_empty(),
+        )
+        page_kwarg = self.page_kwarg
+        page = self.kwargs.get(page_kwarg) or self.request.GET.get(page_kwarg) or 1
+        try:
+            page_number = int(page)
+        except ValueError:
+            if page == "last":
+                page_number = paginator.num_pages
+            else:
+                raise Http404("Page is not “last”, nor can it be converted to an int.")
+        try:
+            page = paginator.page(page_number)
+            return (paginator, page, page.object_list, page.has_other_pages())
+        except InvalidPage:
+            page = paginator.page(1)
+            return (paginator, page, page.object_list, page.has_other_pages())
 
 
 class AuthorDetailView(generic.DetailView):
